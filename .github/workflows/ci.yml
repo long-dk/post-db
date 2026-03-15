@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  ci:
+    name: Lint, Format, Test & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+          scope: "@long-dk"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Lint check
+        run: npm run lint:check
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Run unit tests with coverage
+        run: npm run test
+        env:
+          NODE_ENV: test
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: post-db-coverage
+          path: coverage/
+          retention-days: 7
+
+      - name: Build
+        run: npm run build
