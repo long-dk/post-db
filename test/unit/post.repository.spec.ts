@@ -1,5 +1,5 @@
 import { PostRepository } from "../../src/repositories/post.repository";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../generated/prisma/client";
 import * as ops from "../../src/operations/base.operations";
 
 jest.mock("../../src/operations/base.operations");

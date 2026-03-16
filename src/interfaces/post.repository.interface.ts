@@ -1,4 +1,4 @@
-import { Post } from "@prisma/client";
+import { Post } from "../../generated/prisma/client";
 import { PaginatedResult, QueryOptions } from "./base.interface";
 
 export type { Post };

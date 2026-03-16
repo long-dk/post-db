@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../generated/prisma/client";
 import { IPostDbManager } from "../interfaces/db-manager.interface";
 import { IPostRepository } from "../interfaces/post.repository.interface";
 import { PostRepository } from "../repositories/post.repository";

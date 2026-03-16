@@ -8,7 +8,7 @@ import {
   softDeleteMany,
   countRecords,
 } from "../../src/operations/base.operations";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../generated/prisma/client";
 
 function makeAccessor(overrides: Record<string, jest.Mock> = {}) {
   return {

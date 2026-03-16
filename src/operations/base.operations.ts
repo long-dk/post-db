@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../generated/prisma/client";
 import { PaginatedResult, QueryOptions } from "../interfaces/base.interface";
 
 export async function findById<T>(

@@ -1,6 +1,6 @@
 import { createPostDbManager, resetPostDbManager } from "../../src/client/prisma.client";
 
-jest.mock("@prisma/client", () => {
+jest.mock("../../generated/prisma/client", () => {
   const disconnect = jest.fn().mockResolvedValue(undefined);
   const MockPrismaClient = jest.fn().mockImplementation(() => ({
     $disconnect: disconnect,
